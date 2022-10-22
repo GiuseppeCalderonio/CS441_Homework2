@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message TimestampRequest {
+  string timestamp = 1;
+  string deltaTimestamp = 2;
+}
+
+message TimestampResponse {
+  string timestamps = 1;
+  bool completed = 2;
+}
+
+service Search {
+  rpc IsTimeIntervalPresent(TimestampRequest) returns  (TimestampResponse) {}
+}
