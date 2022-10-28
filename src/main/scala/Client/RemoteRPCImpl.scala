@@ -1,6 +1,8 @@
 package Client
 
 import HelperUtils.{CreateLogger, Parameters}
+import RemoteRPC.SearchGrpc.Search
+import RemoteRPC.{TimestampRequest, TimestampResponse}
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
