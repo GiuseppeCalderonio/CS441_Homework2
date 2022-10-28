@@ -19,10 +19,14 @@ lazy val akkaVersion    = "2.6.18"
 resolvers += Resolver.jcenterRepo
 
 // assembly merge strategy
+
 assembly / assemblyMergeStrategy := {
+  case PathList("reference.conf") => MergeStrategy.concat
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
   case x => MergeStrategy.first
 }
+
+
 // compiles protobuf definitions into scala code
 
 Compile / PB.targets := Seq(

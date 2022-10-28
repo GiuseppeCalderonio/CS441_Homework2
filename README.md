@@ -1,4 +1,4 @@
-# CS-441 HOMEWORK 1
+# CS-441 HOMEWORK 2
 
 * First Name : Giuseppe
 * Last name : Calderonio
@@ -302,4 +302,11 @@ git clone https://github.com/GiuseppeCalderonio/LogFileGenerator.git
 sbt clean compile run
 ```
 
-and the output should be 
+and the output log file should be stored in the AWS S3 bucket.
+
+
+### Video
+
+Here can be found a 
+[youtube video]()
+where most of the steps are documented
