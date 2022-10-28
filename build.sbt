@@ -1,4 +1,3 @@
-import sbt.Keys.libraryDependencies
 
 name := "CS441_Homework2"
 
@@ -25,6 +24,7 @@ assembly / assemblyMergeStrategy := {
   case x => MergeStrategy.first
 }
 // compiles protobuf definitions into scala code
+
 Compile / PB.targets := Seq(
   scalapb.gen() -> (Compile / sourceManaged).value / "scalapb"
 )
@@ -41,7 +41,12 @@ libraryDependencies ++= Seq(
   "com.github.mifmif" % "generex" % generexVersion,
 
   // scalabp for gRPC protobuf
-  "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
+
+  "io.grpc" % "grpc-alts" % "1.41.0",
+  "io.grpc" % "grpc-protobuf" % "1.41.0",
+  "io.grpc" % "grpc-stub" % "1.41.0",
+  "io.netty" % "netty-tcnative-boringssl-static" % "2.0.20.Final",
+  "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
   "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
 
 
@@ -54,8 +59,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % Test,
   "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion % Test,
   "org.scalatest" %% "scalatest" % "3.1.4" % Test,
-
-  //"com.google.code.gson" % "gson" % "2.9.0",
 
   "com.amazonaws" % "aws-lambda-java-core" % awsLambdaVersion,
   "com.amazonaws" % "aws-lambda-java-events" % awsLambdaEventsVersion,

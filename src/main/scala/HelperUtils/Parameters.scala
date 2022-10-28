@@ -1,11 +1,5 @@
 package HelperUtils
 
-import com.typesafe.config.Config
-
-import java.time.LocalTime
-import java.time.format.{DateTimeFormatter, DateTimeParseException}
-import scala.collection.immutable.ListMap
-import scala.jdk.CollectionConverters.CollectionHasAsScala
 import scala.util.{Failure, Success, Try}
 
 /**
@@ -33,24 +27,6 @@ object Parameters {
   private val config = ObtainConfigReference("Homework2Config") match {
     case Some(value) => value
     case None => throw new RuntimeException("Cannot obtain a reference to the config data.")
-  }
-
-
-  /**
-   * this function returns a list of strings given a parameter name
-   * in particular, it searches for the parameter name in the .config file, and if it does not find it, it
-   * throws an exception
-   *
-   * @param stringListName this parameter represents the name of the configuration parameter that should be a list of strings
-   * @throws IllegalArgumentException if the parameter name does not exists in the .config file of it is not a list
-   * @return
-   */
-  private def getStringListSafe(stringListName: String): List[String] = {
-    Try(config.getStringList(s"$configName.$stringListName").asScala.toList) match {
-      case Success(value) => value
-      case Failure(_) => logger.error(s"No config parameter $stringListName is provided")
-        throw new IllegalArgumentException(s"No config data for $stringListName")
-    }
   }
 
 
@@ -84,16 +60,14 @@ object Parameters {
   val messageTypes: String = getParam("messageTypes", "(INFO|WARN|ERROR|DEBUG)")
   val timeRegexp: String = getParam("timeRegexp", "([0-9]{2}):([0-9]{2}):([0-9]{2}).([0-9]{3})")
 
-  val protocol: String = getParam("protocol", "http")
-  val ip: String = getParam("ip", "127.0.0.1")
-  val port: String = getParam("port", "8080")
-  val url: String = getParam("url", "timestampService")
+  val timeout: Int = getParam("timeout", "10").toInt
 
-  val awsIp: String = getParam("awsIp", "127.0.0.1")
-  val awsPort: String = getParam("awsPort", "8080")
-  val awsUrl: String = getParam("awsUrl", "timestampService")
+  val awsFunctionUrl: String = getParam("awsFunctionUrl", "http://localhost:8080")
 
-  val awsBucket: String = getParam("awsBucket", "8080")
-  val awsKey: String = getParam("awsKey", "timestampService")
+  val awsBucket: String = getParam("awsBucket", "peppe-bucket-test")
+  val awsKey: String = getParam("awsKey", "LogFileGenerator.2022-10-17.0.log")
+
+  val awsAccessKey: String = getParam("awsAccessKey", "")
+  val awsSecretKey: String = getParam("awsSecretKey", "")
 
 }

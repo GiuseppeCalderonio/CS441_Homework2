@@ -1,15 +1,26 @@
 syntax = "proto3";
-
+/**
+  Timestamp request, it contains two strings :
+    timestamp : represents the first timestamp used to compute the time interval
+    delta_timestamp : represents the delta timestamp used to compute the time interval
+ */
 message TimestampRequest {
   string timestamp = 1;
-  string deltaTimestamp = 2;
+  string delta_timestamp = 2;
 }
 
+/**
+  Timestamp response, it contains a string
+    message : message created based on the returned http code
+ */
 message TimestampResponse {
-  string timestamps = 1;
-  bool completed = 2;
+  string message = 1;
 }
 
+/**
+  remote procedure that takes as input a timestamp request, and returns a timestamp
+  response after executing the search
+ */
 service Search {
   rpc IsTimeIntervalPresent(TimestampRequest) returns  (TimestampResponse) {}
 }
