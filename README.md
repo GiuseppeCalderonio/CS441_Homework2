@@ -5,6 +5,7 @@
 * UIC email : gcalde22@uic.edu
 * UIN: 679346611
 * deployment video on youtube : [TODO]()
+* Log File Generator Project : [https://github.com/GiuseppeCalderonio/LogFileGenerator](https://github.com/GiuseppeCalderonio/LogFileGenerator)
 
 ## Introduction
 This repository contains the implementation of a Client Server
