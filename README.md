@@ -247,6 +247,50 @@ In particular :
 3. Create a **IAM security role** for the lambda following
    [this tutorial](https://bobbyhadz.com/blog/aws-grant-lambda-access-to-s3)
 
+#### EC2 Log File Generator
+
+In order to run the Log file generator on an EC2 instance,
+the following has to be done :
+
+1. Launch a new instance in the EC2 console with the _ubuntu_ image
+   selected and selecting the _Key pair_ created in the 2-nd
+   preliminary step
+2. Send the jar file in the EC2 instance using the following command :
+```
+scp -i "<keyPairFileLocation>" <jarFileName> ubuntu@<instanceUrl>:hw2.jar
+```
+where _keyPairFileLocation_ is the location of the file downloaded
+in the 2-nd preliminary step, _instanceUrl_ is the url
+assigned to the instance that can be found on the instance details
+and _jarFileName_ is the location of the jar
+file locally
+This command will create in the EC2 instance a jar file named
+_hw2.jar_
+
+3. Connect through ssh using the following command :
+```
+ssh -i "<keyPairFileLocation>" ubuntu@<instanceUrl>
+```
+
+where _keyPairFileLocation_ is the location of the file downloaded
+in the 2-nd preliminary step, while _instanceUrl_ is the url
+assigned to the instance that can be found on the instance details
+
+4. Install java typing the following command :
+
+```
+sudo apt install openjdk-11-jre-headless
+```
+
+5. Run the jar file with the following command :
+```
+java -jar hw2.jar
+```
+
+and the output log file should be stored in the AWS S3 bucket as
+**input.log**.
+
+
 #### AWS Lambda
 
 In order to deploy the project using a lambda function,
@@ -262,47 +306,6 @@ execute the following steps
 
 After these steps, the lambda function is up and running, and
 it is possible to invoke it with a gRPC client
-
-#### EC2 Log File Generator
-
-In order to run the Log file generator on an EC2 instance,
-the following has to be done :
-
-1. Launch a new instance in the EC2 console with the _ubuntu_ image
- selected and selecting the _Key pair_ created in the 2-nd
- preliminary step
-2. Connect through ssh using the following command :
-```
-ssh -i "<keyPairFileLocation>" ubuntu@<instanceUrl>
-```
-
-where _keyPairFileLocation_ is the location of the file downloaded
-in the 2-nd preliminary step, while _instanceUrl_ is the url
-assigned to the instance that can be found on the instance details
-
-3. Install scala typing the following command :
-
-```
-curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup
-```
-4. Exit and reconnect, using the same command used in step 2 
-   (this step is required otherwise the sbt command doesn't work)
-5. clone the repository of the Log file generator executing the
-   following commands :
-```
-git init
-git clone https://github.com/GiuseppeCalderonio/LogFileGenerator.git
-```
-
-6. change the configuration parameters for the secret key and
-   access key with the values created in the 1-st preliminary step
-
-7. enter in the project directory and run the instance :
-```
-sbt clean compile run
-```
-
-and the output log file should be stored in the AWS S3 bucket.
 
 
 ### Video
