@@ -295,7 +295,7 @@ In order to deploy the project using a lambda function,
 execute the following steps
 
 1. Create a lambda function choosing the runtime _Java 11 (Corretto)_
-   , _x86_64_ architecture, and creating a new role
+   and the _x86_64_ architecture
 2. Create a new trigger clicking on _add Trigger_, select the option _API Gateway_ clicking on the
    checkbox _Create a new API_
 3. Click on the _API Gateway_ just created, copy the url
