@@ -1,12 +1,12 @@
-syntax = "proto3";
+syntax = "proto2";
 /**
   Timestamp request, it contains two strings :
     timestamp : represents the first timestamp used to compute the time interval
     delta_timestamp : represents the delta timestamp used to compute the time interval
  */
 message TimestampRequest {
-  string timestamp = 1;
-  string delta_timestamp = 2;
+  required string timestamp = 1;
+  required string delta_timestamp = 2;
 }
 
 /**
@@ -14,7 +14,7 @@ message TimestampRequest {
     message : message created based on the returned http code
  */
 message TimestampResponse {
-  string message = 1;
+  required string message = 1;
 }
 
 /**

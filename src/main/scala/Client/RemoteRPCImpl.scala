@@ -90,19 +90,10 @@ class RemoteRPCImpl extends Search{
 
     // return a future string based on the response code received
     responseFuture.map {
-      case response@HttpResponse(StatusCodes.CustomStatusCode(200), _, _, _) =>
-        logger.info(s"Positive response received")
-        TimestampResponse(message = s"INFO MESSAGE : Positive response received with status code ${response.status}, time intervals are contained in the log file")
-
-
-      case response@HttpResponse(StatusCodes.CustomStatusCode(480), _, _, _) =>
-        logger.warn(s"Negative response received")
-        TimestampResponse(message = s"WARNING MESSAGE : Negative response received with status code ${response.status}, time intervals are NOT contained in the log file")
-
 
       case response@HttpResponse(_, _, _, _) =>
-        logger.error(s"Error response received")
-        TimestampResponse(message = s"ERROR MESSAGE : Error in the request with status code ${response.status}")
+        logger.error(s"Response received")
+        TimestampResponse(message = s"request with status code ${response.status}")
     }
   }
 }

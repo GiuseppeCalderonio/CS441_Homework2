@@ -70,4 +70,7 @@ object Parameters {
   val awsAccessKey: String = getParam("awsAccessKey", "")
   val awsSecretKey: String = getParam("awsSecretKey", "")
 
+  val positiveResponseCode: Int = getParam("positiveResponseCode", "200").toInt
+  val negativeResponseCode: Int = getParam("negativeResponseCode", "200").toInt
+
 }

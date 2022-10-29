@@ -81,7 +81,7 @@ object LambdaHandler extends RequestHandler[APIGatewayV2HTTPEvent, APIGatewayV2H
 
     logger.info(s"Request parsed as a protobuf message")
 
-    // get thetimestamps from the protobuf messages
+    // get the timestamps from the protobuf messages
     val timestamp = getTimestamp(timestampRequest.timestamp)
     val deltaTimestamp = getTimestamp(timestampRequest.deltaTimestamp)
 
@@ -108,8 +108,8 @@ object LambdaHandler extends RequestHandler[APIGatewayV2HTTPEvent, APIGatewayV2H
    * @return 200 if result = true, 480 if result = false
    */
   private def getStatusCode(result : Boolean) : Int = {
-    if(result) return 200
-    480
+    if(result) return Parameters.positiveResponseCode
+    Parameters.negativeResponseCode
   }
 
   /**
