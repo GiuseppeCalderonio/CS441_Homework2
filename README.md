@@ -244,8 +244,6 @@ In particular :
    [this tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
    make sure to store in a safe location the resulting file.
    also make sure to create a _.pem_ file and not a _.kkp_ file 
-3. Create a **IAM security role** for the lambda following
-   [this tutorial](https://bobbyhadz.com/blog/aws-grant-lambda-access-to-s3)
 
 #### EC2 Log File Generator
 
@@ -297,13 +295,20 @@ In order to deploy the project using a lambda function,
 execute the following steps
 
 1. Create a lambda function choosing the runtime _Java 11 (Corretto)_
-   , _x86_64_ architecture, and using an existing role selecting the
-   role created in the 3-rd preliminary step
+   , _x86_64_ architecture, and creating a new role
 2. Create a new trigger clicking on _add Trigger_, select the option _API Gateway_ clicking on the
    checkbox _Create a new API_
 3. Click on the _API Gateway_ just created, copy the url
    provided, and paste it in the url entry of the [configuration file](https://github.com/GiuseppeCalderonio/CS441_Homework2/blob/master/src/main/resources/application.conf)
-
+4. Upload the jar file (if the jar file is
+ too big, it should be uploaded from an S3 bucket)
+5. Set the handler of the request as
+```
+AWSLambda.LambdaHandler::handleRequest
+```
+6. Go in general configuration and increase the timeout to one
+ minute (the read from S3 bucket requires more than 15 seconds
+ which is the default)
 After these steps, the lambda function is up and running, and
 it is possible to invoke it with a gRPC client
 
