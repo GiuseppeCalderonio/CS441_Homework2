@@ -4,7 +4,7 @@
 * Last name : Calderonio
 * UIC email : gcalde22@uic.edu
 * UIN: 679346611
-* deployment video on youtube : [TODO]()
+* deployment video on youtube : [https://youtu.be/r_xpunekDQw](https://youtu.be/r_xpunekDQw)
 * Log File Generator Project : [https://github.com/GiuseppeCalderonio/LogFileGenerator](https://github.com/GiuseppeCalderonio/LogFileGenerator)
 
 ## Introduction
@@ -317,5 +317,5 @@ it is possible to invoke it with a gRPC client
 ### Video
 
 Here can be found a 
-[youtube video]()
+[youtube video](https://youtu.be/r_xpunekDQw)
 where most of the steps are documented
