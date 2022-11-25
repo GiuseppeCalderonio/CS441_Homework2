@@ -23,13 +23,9 @@ Grading Criteria:
  - the documentation exists but it is insufficient to understand your program design and models and how you assembled and deployed all components of your solution: up to 15% lost;
 	* documentation present: -0%
 
-Total Grade: 0%
+Total Grade: 16% (+1% bonus)
 
 Comments:
-
-Your project doesn't compile with Scala 2.13. It fails with error artifact not found for protococ
-With Scala 3.13 it compiles though it fails runtime in the Akka code as you mentioned in your wiki.
-
 
 Strong test suite
 Good project structure and design
